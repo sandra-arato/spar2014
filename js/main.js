@@ -1,3 +1,6 @@
+var map;
+var geocoder;
+
 function firstMapLoad (currentPlace) {
 
 	var MY_MAPTYPE_ID = 'custom_style';
@@ -5,36 +8,44 @@ function firstMapLoad (currentPlace) {
 		{
 			"featureType": "water",
 			"stylers": [
-				{ "hue": "#00ffcc" },
-				{ "saturation": -47 },
-				{ "lightness": -24}
+			{ "visibility": "on" },
+			{ "color": "#003466" }
 			]
 		},{
 			"featureType": "landscape",
 			"stylers": [
-				{ "hue": "#4cff00" },
-				{ "lightness": -33},
-				{ "gamma": 1.04 }
+			{ "visibility": "on" },
+			{ "color": "#ffffff" }
+			]
+		},{
+			"featureType": "transit",
+			"stylers": [
+			{ "visibility": "on" },
+			{ "color": "#ffffff" }
 			]
 		},{
 			"featureType": "road",
 			"stylers": [
-				{ "hue": "#ffa200" },
-				{ "weight": 0.4 }
+			{ "visibility": "on" },
+			{ "color": "#ffffff" }
+			]
+		},{
+			"featureType": "administrative.province",
+			"stylers": [
+			{ "visibility": "on" },
+			{ "color": "#ffffff" }
+			]
+		},{
+			"featureType": "administrative.land_parcel",
+			"stylers": [
+			{ "visibility": "on" },
+			{ "color": "#ffffff" }
 			]
 		},{
 			"featureType": "poi",
-			"elementType": "labels",
 			"stylers": [
-				{ "hue": "#00ff6f" },
-				{ "lightness": -28 }
-			]
-		},{
-			"featureType": "administrative",
-			"stylers": [
-				{ "hue": "#0077ff" },
-				{ "lightness": -20 },
-				{ "gamma": 1.33 }
+			{ "visibility": "on" },
+			{ "color": "#ffffff" }
 			]
 		}
 	]
