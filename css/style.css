@@ -1,0 +1,34 @@
+@import url(http://fonts.googleapis.com/css?family=Quattrocento+Sans);
+
+body {
+	text-align: center;
+	font-family: 'Quattrocento Sans', sans-serif;
+	font-size: 22px;
+	color: #363636;
+	background-color: #5082b3;
+}
+
+#container {
+	width: 940px;
+	margin: 0 auto;
+	background-color: #ffffff;
+}
+
+#heading {
+	padding-top: 50px;
+}
+
+h1, #heading p {
+	margin: 0;
+}
+
+h2 {
+	margin: 0.63em auto 0.24em auto;
+}
+
+#map-canvas {
+	width: 600px;
+	height: 380px;
+	padding: 0;
+	margin: 0 auto;
+}
