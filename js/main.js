@@ -1,5 +1,29 @@
 var map;
 var geocoder;
+var companyList = [];
+
+function callBackFunction(json) {
+	console.log("hello call back function");
+
+	var feed = json.feed;
+    var entries = feed.entry || [];
+    var html = ['<ul>'];
+
+    for (var i = 0; i < entries.length; ++i) {
+      var entry = entries[i];
+      var company = (entry.title.type == 'html') ? entry.title.$t : escape(entry.title.$t);
+      var website = (entry['gsx$website']) ? entry.gsx$website.$t :  escape(entry.gsx$website.$t);
+      var location = (entry['gsx$location']) ? entry.gsx$location.$t :  escape(entry.gsx$location.$t);
+      var thisCompany = {
+      	"companyName": company,
+      	"url": "http://" + website,
+      	"location": location 
+      }
+      companyList.push(thisCompany);
+    }
+
+    console.log(companyList);
+}
 
 function codeAddress(place) {
 	
