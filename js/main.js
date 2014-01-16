@@ -1,43 +1,43 @@
 var map;
-var geocoder;
 var companyList = [];
 
-function callBackFunction(json) {
-	console.log("hello call back function");
+function placeCompanyMarkers () {
 
-	var feed = json.feed;
-    var entries = feed.entry || [];
-    var html = ['<ul>'];
+	for (var i = 0, len = companyList.length; i < len; i++) {
+		var thisLocation = companyList[i].location;
 
-    for (var i = 0; i < entries.length; ++i) {
-      var entry = entries[i];
-      var company = (entry.title.type == 'html') ? entry.title.$t : escape(entry.title.$t);
-      var website = (entry['gsx$website']) ? entry.gsx$website.$t :  escape(entry.gsx$website.$t);
-      var location = (entry['gsx$location']) ? entry.gsx$location.$t :  escape(entry.gsx$location.$t);
-      var thisCompany = {
-      	"companyName": company,
-      	"url": "http://" + website,
-      	"location": location 
-      }
-      companyList.push(thisCompany);
-    }
-
-    console.log(companyList);
-}
-
-function codeAddress(place) {
-	
-	geocoder.geocode( { 'address': place}, function(results, status) {
-		if (status == google.maps.GeocoderStatus.OK) {
-			map.setCenter(results[0].geometry.location);
+		if (thisLocation && thisLocation.length > 0) {
 			var marker = new google.maps.Marker({
 				map: map,
-				position: results[0].geometry.location
+				position: companyList[i].geoloc
 			});
-		} else {
-			alert('Geocode was not successful for the following reason: ' + status);
+		};
+
+	};
+}
+
+function getDataFromSpreadsheet(json) {
+
+	var feed = json.feed;
+	var entries = feed.entry || [];
+	// console.log(json)
+	for (var i = 0; i < entries.length; ++i) {
+		var entry = entries[i];
+		var company = (entry.title.type == 'text') ? entry.title.$t : escape(entry.title.$t);
+		var website = (entry['gsx$website']) ? entry.gsx$website.$t :  escape(entry.gsx$website.$t);
+		var location = (entry['gsx$location']) ? entry.gsx$location.$t :  escape(entry.gsx$location.$t);
+		var lng =(entry['gsx$geolongitude']) ? entry.gsx$geolongitude.$t :  escape(entry.gsx$geolongitude.$t);
+		var lat = (entry['gsx$geolatitude']) ? entry.gsx$geolatitude.$t :  escape(entry.gsx$geolatitude.$t);
+		var geoloc = new google.maps.LatLng(lat, lng);
+
+		var thisCompany = {
+			"companyName": company,
+			"url": "http://" + website,
+			"location": location,
+			"geoloc": geoloc
 		}
-	});
+		companyList.push(thisCompany);
+	}
 }
 
 function firstMapLoad (currentPlace) {
@@ -118,14 +118,13 @@ function firstMapLoad (currentPlace) {
 
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
-	geocoder = new google.maps.Geocoder();
-	codeAddress("Colorado Springs, Colorado");
 }
 
 
 function initialize() {
 	var placeInit = [38.79555,-104.84136];
 	firstMapLoad(placeInit);
+	placeCompanyMarkers();
 	
 }
 
