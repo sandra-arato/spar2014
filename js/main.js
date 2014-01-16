@@ -1,6 +1,21 @@
 var map;
 var geocoder;
 
+function codeAddress(place) {
+	
+	geocoder.geocode( { 'address': place}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			map.setCenter(results[0].geometry.location);
+			var marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location
+			});
+		} else {
+			alert('Geocode was not successful for the following reason: ' + status);
+		}
+	});
+}
+
 function firstMapLoad (currentPlace) {
 
 	var MY_MAPTYPE_ID = 'custom_style';
@@ -55,7 +70,7 @@ function firstMapLoad (currentPlace) {
 	};
 
 	var mapOptions = {
-		zoom: 1,
+		zoom: 2,
 		center: new google.maps.LatLng(currentPlace[0],currentPlace[1]),
 		panControl: false,
 		zoomControl: false,
@@ -79,7 +94,8 @@ function firstMapLoad (currentPlace) {
 
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
-	placeMarkers();
+	geocoder = new google.maps.Geocoder();
+	codeAddress("Colorado Springs, Colorado");
 }
 
 
