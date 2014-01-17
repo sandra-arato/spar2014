@@ -110,7 +110,7 @@ function firstMapLoad (currentPlace) {
 	};
 
 	var mapOptions = {
-		zoom: 2,
+		zoom: 1,
 		center: new google.maps.LatLng(currentPlace[0],currentPlace[1]),
 		panControl: false,
 		zoomControl: false,
