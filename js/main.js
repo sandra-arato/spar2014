@@ -8,15 +8,16 @@ function placeCompanyMarkers () {
 		var thisItem = companyList[i];
 		var thisLocation = companyList[i].location;
 
-
 		if (thisLocation && thisLocation.length > 0) {
 			var marker = new google.maps.Marker({
 				map: map,
 				icon: "img/marker-24.ico",
 				position: companyList[i].geoloc,
 				html:
+					"<div id='map-infowindow-" + i + "'>" +
 					"<div>" + thisItem.companyName + "</div>" +
-					"<a href='" + thisItem.url + "'>" + "Company website" + "</a>"
+					"<a href='" + thisItem.url + "' target='_blank'>" + "Company website" + "</a>" +
+					"</div>"
 			});
 			console.log(i, this);
 			infowindow = new google.maps.InfoWindow({

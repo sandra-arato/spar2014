@@ -33,10 +33,14 @@ h2 {
 	margin: 0 auto;
 }
 
-#results {
-	font-size: 14px;
-	color: #ffffff;
-	padding-left: 40px;
-	line-height: 1.3em;
+div[id^="map-infowindow"] {
+	margin: 6px 4px;
+	display: inline-block;
+	line-height: 1.15;
 	text-align: left;
+}
+
+div[id^="map-infowindow"] a {
+	color: #003466;
+	text-decoration: none;
 }
