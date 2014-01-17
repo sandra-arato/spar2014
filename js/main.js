@@ -1,16 +1,31 @@
 var map;
 var companyList = [];
+var infowindow = null;
 
 function placeCompanyMarkers () {
 
 	for (var i = 0, len = companyList.length; i < len; i++) {
+		var thisItem = companyList[i];
 		var thisLocation = companyList[i].location;
+
 
 		if (thisLocation && thisLocation.length > 0) {
 			var marker = new google.maps.Marker({
 				map: map,
-				position: companyList[i].geoloc
+				icon: "img/marker-24.ico",
+				position: companyList[i].geoloc,
+				html:
+					"<div>" + thisItem.companyName + "</div>" +
+					"<a href='" + thisItem.url + "'>" + "Company website" + "</a>"
 			});
+			console.log(i, this);
+			infowindow = new google.maps.InfoWindow({
+				content: "placeholder"
+			});
+			google.maps.event.addListener(marker, 'click', function(thisItem) {
+				infowindow.setContent(this.html);
+				infowindow.open(map, this);
+			}); 
 		};
 
 	};
