@@ -59,51 +59,58 @@ function getDataFromSpreadsheet(json) {
 function firstMapLoad (currentPlace) {
 
 	var MY_MAPTYPE_ID = 'custom_style';
+
 	var featureOpts = [
 		{
 			"featureType": "water",
 			"stylers": [
-			{ "visibility": "on" },
-			{ "color": "#003466" }
+				{"visibility": "on" },
+				{ "color": "#003466" }
 			]
-		},{
+		},
+		{
 			"featureType": "landscape",
 			"stylers": [
-			{ "visibility": "on" },
-			{ "color": "#ffffff" }
+				{ "visibility": "on" },
+				{ "color": "#ffffff" }
 			]
-		},{
+		},
+		{
 			"featureType": "transit",
 			"stylers": [
-			{ "visibility": "on" },
-			{ "color": "#ffffff" }
+				{ "visibility": "on" },
+				{ "color": "#ffffff" }
 			]
-		},{
+		},
+		{
 			"featureType": "road",
 			"stylers": [
-			{ "visibility": "on" },
-			{ "color": "#ffffff" }
+				{ "visibility": "on" },
+				{ "color": "#ffffff" }
 			]
-		},{
+		},
+		{
 			"featureType": "administrative.province",
 			"stylers": [
-			{ "visibility": "on" },
-			{ "color": "#ffffff" }
+				{ "visibility": "on" },
+				{ "color": "#ffffff" }
 			]
-		},{
+		},
+		{
 			"featureType": "administrative.land_parcel",
 			"stylers": [
-			{ "visibility": "on" },
-			{ "color": "#ffffff" }
+				{ "visibility": "on" },
+				{ "color": "#ffffff" }
 			]
-		},{
+		},
+		{
 			"featureType": "poi",
 			"stylers": [
-			{ "visibility": "on" },
-			{ "color": "#ffffff" }
+				{ "visibility": "on" },
+				{ "color": "#ffffff" }
 			]
 		}
-	]
+	];
 	
 	var styledMapOptions = {
 		name: 'Custom Style'
@@ -111,7 +118,7 @@ function firstMapLoad (currentPlace) {
 
 	var mapOptions = {
 		zoom: 1,
-		center: new google.maps.LatLng(currentPlace[0],currentPlace[1]),
+		center: new google.maps.LatLng(38.79555,-104.84136),
 		panControl: false,
 		zoomControl: false,
 		mapTypeControl: false,
@@ -139,7 +146,7 @@ function firstMapLoad (currentPlace) {
 
 function initialize() {
 	var placeInit = [38.79555,-104.84136];
-	firstMapLoad(placeInit);
+	firstMapLoad();
 	placeCompanyMarkers();
 	
 }
