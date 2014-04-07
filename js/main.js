@@ -33,10 +33,8 @@ function placeCompanyMarkers () {
 }
 
 function getDataFromSpreadsheet(json) {
-
 	var feed = json.feed;
 	var entries = feed.entry || [];
-	// console.log(json)
 	for (var i = 0; i < entries.length; ++i) {
 		var entry = entries[i];
 		var company = (entry.title.type == 'text') ? entry.title.$t : escape(entry.title.$t);
